@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="ISO-8859-1">
+<title>Registrar estudiante</title>
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<div>
+			<form th:action="@{/sstudents/save}" method="post" th:object="${s}">
+				<div class="col-sm-12">
+					<label class="form-label" style="color: #fdfdfd">Nombre:</label> <input
+						type="text" th:field="*{nombreStudent}" class="form-control"
+						required minlength="2" maxlength="60"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: #fdfdfd">DNI</label> <input
+						type="text" th:field="*{dniStudent}" class="form-control" required
+						minlength="8" maxlength="8"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: #fdfdfd">Edad:</label> <input
+						type="number" th:field="*{edadStudent}" class="form-control"
+						required minlength="2" maxlength="3"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: #fdfdfd">N&uacutemero:</label>
+					<input type="text" th:field="*{numStudent}" class="form-control"
+						required minlength="9" maxlength="9"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: #fdfdfd">Correo:</label> <input
+						type="email" th:field="*{correoStudent}" class="form-control"
+						required></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: #fdfdfd">Usuario:</label> <input
+						type="text" th:field="*{userStudent}" class="form-control"
+						required minlength="6" maxlength="10"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: #fdfdfd">Contrase&ntildea:</label>
+					<input type="password" th:field="*{passStudent}"
+						class="form-control" required minlength="4" maxlength="10"></input>
+				</div>
+				<div class="col-sm-12">
+					<label class="form-label" style="color: #fdfdfd">Universidad:</label> <select
+						name="selectUniversidad" class="form-control"
+						th:field="*{universidad.idUniversidad}">
+						<option th:each="u:${listaUniversidades}" th:value="${u.idUniversidad}"
+							th:text="${u.fullNameUniversidad}"
+							th:selected="(${u.idUniversidad}==*{universidad.idUniversidad})"></option>
+					</select>
+				</div>
+				<br>
+				<div class="col-sm-12">
+					<input type="submit" value="Registrar" class="btn btn-dark"></input>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>
